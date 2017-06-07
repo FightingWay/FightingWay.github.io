@@ -1,367 +1,506 @@
-<!doctype html>
+<!DOCTYPE html>
+<html>
 <head>
-<meta charset='utf-8' />
-<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no' />
-<meta name='format-detection' content='telephone=no' />
-<meta name='format-detection' content='email=no' />
-<title></title>
-<style>
-*{margin:0px;padding:0px;}
-body{background:#F0F1F3;}
-	.question_div{
-		margin-top:20px;
-		background: #fff;
-		font-size: 20px;
-		padding:20px;
-	}
-	.question_div p{
-		color: #5B5B66;
-		padding:5px;
-	}
-	.question_div div{
-		padding:7px;
-	}
-   label{
-   	color: #8D8D8D;
-   	font-size: 18px;
-   	padding:10px;
-   	padding-left: 0px;
-   	vertical-align: middle;
-   }
-   input[type='radio']{
-   	width:16px;
-   	height:16px;
-   }
-</style>
-<style>
-*{margin:0;padding:0;-webkit-box-sizing:border-box;box-sizing:border-box}img{border:0}ol,ul{list-style:none}body{font:'MicroSoft YaHei';-webkit-overflow-scrolling:touch}#homepage{position:absolute;top:0;left:0;bottom:0;right:0;background:#fff}.header{position:relative;padding-bottom:18px;text-align:center}.header:after{content:"";position:absolute;left:0;right:0;bottom:0;width:100%;height:1px;-webkit-transform:scaleY(0.5);transform:scaleY(0.5);-webkit-transform-origin:center bottom;transform-origin:center bottom;background:#eeeeee}.header-tip{position:absolute;left:0;right:0;top:20px;font-size:12px;color:#333333}.header-img{margin-top:50px;height:auto}.header-type{padding-top:12px;font-size:15px;color:#333333}.header-result{padding-top:13px;font-size:12px;color:#999999}.container{padding:0 15px;padding-top:18px}.container-title{padding-bottom:12px;font-weight:400;font-size:15px;color:#333333}.container-txt{margin-bottom:8px;font-size:14px;color:#666666}.container-txt:after{content:"";display:table;clear:both}.container-txt:last-child{margin-bottom:0}.container-txt span{float:left}.container-txt-s{margin-left:8px;width:72%;color:#333333;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.btn-group{margin:45px 15px 0 15px}.appraisal-btn{width:100%;padding:12px 0;font-size:18px;color:#fff;background:#e93030;border-radius:8px;border:none;outline:none}#answer_page{position:absolute;top:0;left:0;bottom:0;right:0;background:#f1f1f1}.question_div{position:relative;margin:0;padding:0}.question_div:after{content:"";position:absolute;left:0;right:0;bottom:0;width:100%;height:1px;-webkit-transform:scaleY(0.5);transform:scaleY(0.5);-webkit-transform-origin:center bottom;transform-origin:center bottom;background:#dddddd}.question_div p{position:relative;padding:13px 15px;font-size:15px;color:#333333;background:#f9f9f9}.question_div p:after{content:"";position:absolute;left:0;right:0;bottom:0;width:100%;height:1px;-webkit-transform:scaleY(0.5);transform:scaleY(0.5);-webkit-transform-origin:center bottom;transform-origin:center bottom;background:#dddddd}.question_div div{position:relative;padding:0 0 0 15px;font-size:14px;color:#666666}.question_div input[type='radio'],.question_div input[type='checkbox']{position:absolute;top:0;left:0;visibility:hidden}.question_div input[type='radio']:checked ~ label,.question_div input[type='checkbox']:checked ~ label{background:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAC0AAAAnCAYAAACbgcH8AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAIGNIUk0AAHolAACAgwAA+f8AAIDpAAB1MAAA6mAAADqYAAAXb5JfxUYAAALfSURBVHjazJhNbExRFMd/M30l6UIi9HZBIr4WbUn6wl4qIUhbS7ERdGHDriLx0UoQurERC6SWSjLdiCIjvhJCUGdDiBARQUzThRBTosbmjkwm7777vjsnmc09d+b+5uac/z3n5L52dTGbpkR8/SXXbQb2AOeVyG+APA1sJdddANwCzgCFkuvOaWjokut2AE+BdXqptwpug87pT9bAG4BHwNI6Vy9wJW8BdoDmjIH7gevAPA/3d2DE8fl+HmgCpjOCzQHHgEOGLe+AXiXyyrGERVbADnAB2GnY8gJYr0QmAXIGycsDfzOKiBZgDNhk8D8BtiiRqeqCY7jlrIBbdfyuNfgngI1K5FvtojOLqrYYuAGsMvjfAJvrgb2gc0AlA+BlQBFYbvB/1jc86eWsh84CuF2/cosM/jLQp0Q+mH4g6/BYDdwBFhr8FaBfiUxg0eJGAQYYViKjHpI4V8uiFboTGNWSFNdWBAB+ABw2aLgDzNjCoxO4DSigDegBfsYAvmcBngK2K5EZQ8iUlcj/fPN6XDr0rbTVrN2NCL4EeOiTdFXrUSLjQX+0PjyagKt1wADdwLWQodJqUYmqnQsD7AU9Axww7A0D3qIfjpWWfW+BgbDx5pWIY8BgDPAm4BKwxnJ2BdilRH5EgfYCPw5cjgh+Etga4OyzWjGIAt1suIXdut0JA74N2B/g3I/Awaj6mfeRvbK+sU8BwduBiwHP3au7kMjQv3z8X4A+/Qf8wOfrOA6SpONaoYgD/cey5zmww8ffrcvIIAOUaWBf3Oc1aO1R8FEULK9drZ0G3mcFbVOUQK0gcCqJyisMtE1RbDYYJ/nilKY2RTHZS2AkqRo3Sj1tUxQvGwiQ8KlCB1GUWrsP3Eyym4jTudgUpWpHk26B4rZbNkUp6gagoaBtijKURrOZRGNrUpQi8LhRoU2KMpxWW5/kCKFWUZ7pPjMVS3pYUwCOAK/THKCkMWE6kfbU598AD3i6CvtPpPMAAAAASUVORK5CYII=") no-repeat center right;background-position:center right 15px;background-size:22.5px auto}.question_div label{position:relative;display:block;width:100%;padding:13px 0;padding-right:30px;font-size:14px;color:#666666;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.question_div label:after{content:"";position:absolute;left:0;right:0;bottom:0;width:100%;height:1px;-webkit-transform:scaleY(0.5);transform:scaleY(0.5);-webkit-transform-origin:center bottom;transform-origin:center bottom;background:#dddddd}.questio
-n_div div:last-child label:after{display:none}#answer p{padding:15px;text-align:center}#reset_btn{margin:auto;margin-top:30px;width:65%;height:40px;line-height:40px;color:white;text-align:center;background:#4691ee;border:1px solid #4691ee;border-radius:5px;outline:none}
-/*# sourceMappingURL=risk_appraisal.css.map */
-#no-risk h3{ position: relative;padding: 13px 15px;font-size: 15px;color: #333333;background: #f9f9f9;}
-#no-risk p{ padding: 13px 15px 0;font-size: 14px;color: #666666;position: relative;display: block;width: 100%;text-indent: 2em;background: #fff;}
-#no-risk p{ padding-bottom: 15px; }
-#no-risk{ display: none; }
-</style>
-</head>
-<body>
-	<form id = 'Q_form' onsubmit="return false;">
-		<div id='hiddenModalContent'>
-		</div>
-		<br>
-	</form>
-	<div align="center" style="display:none;" id="btn">
-	 	<button name="submit"  style="width:65%; height:40px;background:#4691ee;color:white;vertical-align:middle;border:1px solid #4691ee;margin:0px auto; border-radius:5px; margin-bottom:30px;outline: none;"  onclick="do_ans_question();"><font size="4">提 交</font></button>
-	</div>
-    <div id = "answer">
-    </div>
-	<div id="msg"></div>
-	<input type="button"  value="reTest" id="reset_btn" onclick="reTest();" style="display:none;"/>
-</body>
-<script type="text/javascript">
-
-var question = [{"answer":[{"a_no":"1","a_display":"工资、劳务报酬"},{"a_no":"2","a_display":"生产经营所得"},{"a_no":"3","a_display":"利息、股息、转让证券等金融性资产收入"},{"a_no":"4","a_display":"出租、出售房地产等非金融性资产收入"},{"a_no":"5","a_display":"无固定收入"}],"q_type":"radio","q_no":"1","q_display":"您的主要收入来源是"},{"answer":[{"a_no":"1","a_display":"70%以上"},{"a_no":"2","a_display":"50%-70% "},{"a_no":"3","a_display":"30%－50%"},{"a_no":"4","a_display":"10%－30%"},{"a_no":"5","a_display":"10%以下"}],"q_type":"radio","q_no":"2","q_display":"最近您家庭预计进行证券投资的资金占家庭现有总资产(不含自住、自用房产及汽车等固定资产)的比例是"},{"answer":[{"a_no":"1","a_display":"没有"},{"a_no":"2","a_display":"有，住房抵押贷款等长期定额债务"},{"a_no":"3","a_display":"有，信用卡欠款、消费信贷等短期信用债务"},{"a_no":"4","a_display":"有，亲朋之间借款"}],"q_type":"radio","q_no":"3","q_display":"您是否有尚未清偿的数额较大的债务，如有，其性质是"},{"answer":[{"a_no":"1","a_display":"不超过50万元人民币"},{"a_no":"2","a_display":"50万-300万元（不含）人民币"},{"a_no":"3","a_display":"300万-1000万元（不含）人民币"},{"a_no":"4","a_display":"1000万元人民币以上"}],"q_type":"radio","q_no":"4","q_display":"您可用于投资的资产数额（包括金融资产和不动产）为"},{"answer":[{"a_no":"1","a_display":"现在或此前曾从事金融、经济或财会等与金融产品投资相关的工作超过两年"},{"a_no":"2","a_display":"已取得金融、经济或财会等与金融产品投资相关专业学士以上学位"},{"a_no":"3","a_display":"取得证券从业资格、期货从业资格、注册会计师证书（CPA）或注册金融分析师证书（CFA）中的一项及以上"},{"a_no":"4","a_display":"我不符合以上任何一项描述"}],"q_type":"radio","q_no":"5","q_display":"以下描述中何种符合您的实际情况"},{"answer":[{"a_no":"1","a_display":"有限：除银行活期账户和定期存款外，我基本没有其他投资经验"},{"a_no":"2","a_display":"一般：除银行活期账户和定期存款外，我购买过基金、保险等理财产品，但还需要进一步的指导"},{"a_no":"3","a_display":"丰富：我是一位有经验的投资者，参与过股票、基金等产品的交易，并倾向于自己做出投资决策"},{"a_no":"4","a_display":"非常丰富：我是一位非常有经验的投资者，参与过权证、期货或创业板等高风险产品的交易"}],"q_type":"radio","q_no":"6","q_display":"您的投资经验可以被概括为"},{"answer":[{"a_no":"1","a_display":"太高了"},{"a_no":"2","a_display":"偏高"},{"a_no":"3","a_display":"正常"},{"a_no":"4","a_display":"偏低"}],"q_type":"radio","q_no":"7","q_display":"有一位投资者一个月内做了15笔交易（同一品种买卖各一次算一笔），您认为这样的交易频率"},{"answer":[{"a_no":"1","a_display":"5个以下"},{"a_no":"2","a_display":"6至10个"},{"a_no":"3","a_display":"11至15个"},{"a_no":"4","a_display":"16个以上"}],"q_type":"radio","q_no":"8","q_display":"过去一年时间内，您购买的不同金融产品（含同一类型的不同金融产品）的数量是"},{"answer":[{"a_no":"1","a_display":"银行存款"},{"a_no":"2","a_display":"债券、货币市场基金、债券型基金或其它固定收益类产品"},{"a_no":"3","a_display":"股票、混合型基金、偏股型基金、股票型基金等权益类投资品种"},{"a_no":"4","a_display":"期货、融资融券"},{"a_no":"5","a_display":"复杂金融产品或其他产品"}],"q_type":"checkbox","q_no":"9","q_display":"以下金融产品，您投资经验在两年以上的有："},{"answer":[{"a_no":"1","a_display":"10万元以内"},{"a_no":"2","a_display":"10万元-30万元"},{"a_no":"3","a_display":"30万元-100万元"},{"a_no":"4","a_display":"100万元以上"},{"a_no":"5","a_display":"从未投资过金融产品"}],"q_type":"radio","q_no":"10","q_display":"如果您曾经从事过金融产品投资，在交易较为活跃的月份，平均月交易额大概是多少"},{"answer":[{"a_no":"1","a_display":"短期——0到1年"},{"a_no":"2","a_display":"中期——1到5年"},{"a_no":"3","a_display":"长期——5年以上"}],"q_type":"radio","q_no":"11","q_display":"您用于证券投资的大部分资金不会用作其它用途的时间段为"},{"answer":[{"a_no":"1","a_display":"债券、货币市场基金、债券基金等固定收益类投资品种"},{"a_no":"2","a_display":"股票、混合型基金、偏股型基金、股票型基金等权益类投资品种"},{"a_no":"3","a_display":"期货、融资融券"},{"a_no":"4","a_display":"复杂或高风险金融产品"},{"a_no":"5","a_display":"其他产品"}],"q_type":"checkbox","q_no":"12","q_display":"您打算重点投资于哪些种类的投资品种？"},{"answer":[{"a_no":"1","a_display":"全部投资于A"},{"a_no":"2","a_display":"大部分投资于A"},{"a_no":"3","a_display":"两种投资各一半"},{"a_no":"4","a_display":"大部分投资于B"},{"a_no":"5","a_display":"全部投资于B"}],"q_type":"radio","q_no":"13","q_display":"假设有两种不同的投资：投资A预期获得5%的收益，有可能承担非常小的损失；投资B预期获得20%的收益，但有可能面临25%甚至更高的亏损。您将您的投资资产分配为"},{"answer":[{"a_no":"1","a_display":"资产保值，我不愿意承担任何投资风险"},{"a_no":"2","a_display":"尽可能保证本金安全，不在乎收益率比较低"},{"a_no":"3","a_display":"产生较多的收益，可以承担一定的投资风险"},{"a_no":"4","a_display":"实现资产大幅增长，愿意承担很大的投资风险"}],"q_type":"radio","q_no":"14","q_display":"当您进行投资时，您的首要目标是"},{"answer":[{"a_no":"1","a_display":"10%以内"},{"a_no":"2","a_display":"10%-30%"},{"a_no":"3","a_display":"30%-50%"},{"a_no":"4","a_display":"超过50%"}],"q_type":"radio","q_no":"15","q_display":"您认为自己能承受的最大投资损失是多少？"},{"answer":[{"a_no":"1","a_display":"改善生活"},{"a_no":"2","a_display":"个体生产经营或证券投资以外的投资行为"},{"a_no":"3","a_display":"履行扶养、抚养或赡养义务"},{"a_no":"4","a_display":"本人养老或医疗"},{"a_no":"5","a_display":"偿付债务"}],"q_type":"radio","q_no":"16","q_display":"您打算将自己的投资回报主要用于"},{"answer":[{"a_no":"1","a_display":"18-30岁"},{"a_no":"2","a_display":"31-40岁"},{"a_no":"3","a_display":"41-50岁"},{"a_no":"4","a_display":"51-60岁"},{"a_no":"5","a_display":"超过60岁"}],"q_type":"radio","q_no":"17","q_display":"您的年龄是"},{"answer":[{"a_no":"1","a_display":"1-2人"},{"a_no":"2","a_display":"3-4人"},{"a_no":"3","a_display":"5人以上"}],"q_type":"radio","q_no":"18","q_display":"今后五年时间内，您的父母、配偶以及未成年子女等需负法定抚养、扶养和赡养义务的人数为"},{"answer":[{"a_no":"1","a_display":"高中或以下"},{"a_no":"2","a_display":"大学专科"},{"a_no":"3","a_display":"大学本科"},{"a_no":"4","a_display":"硕士及以上"}],"q_type":"radio","q_no":"19","q_display":"您的最高学历是"},{"answer":[{"a_no":"1","a_display":"您与配偶均有稳定收入的工作"},{"a_no":"2","a_display":"您与配偶其中一人有稳定收入的工作"},{"a_no":"3","a_display":"您与配偶均没有稳定收入的工作或者已退休"},{"a_no":"4","a_display":"未婚，但有稳定收入的工作"},{"a_no":"5","a_display":"未婚，目前暂无稳定收入的工作"}],"q_type":"radio","q_no":"20","q_display":"您家庭的就业状况是"}];
-var question_answer = [{"answer":[{"a_no":"","a_display":"工资、劳务报酬"},{"a_no":"","a_display":"生产经营所得"},{"a_no":"3","a_display":"利息、股息、转让证券等金融性资产收入"},{"a_no":"","a_display":"出租、出售房地产等非金融性资产收入"},{"a_no":"","a_display":"无固定收入"}],"q_type":"radio","q_no":"1","q_display":"您的主要收入来源是"}];
-
-var sortArry = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
-console.log(question);
-//题目生成
-render_question(question);
-//客观题
-objective_question(question_answer);
-
-
-
-//客户端回调，生成题目
-function render_question(question){
-	document.getElementById("answer").style.display = "none";
-	document.getElementById("reset_btn").style.display = "none";
-	document.getElementById("Q_form").style.display = "inline";
-	var c = 'question_div';
-    var con = document.getElementById("hiddenModalContent");
-    var html = '';
-    var ay = new Array();
-    var len = question.length;
-    var a_len = 0;
-    var q = null;
-    var a = null;
-    var i = 0;
-    var j = 0;
-    var q_type = '';
-    var q_no = '';
-    var q_display = '';
-    var q_real_no = '';
-    var a_no = '';
-    var a_val = '';
-    var a_ele_name = '';
-    var a_ele_id = '';
-
-    for (i = 0; i < len; ++ i){
-		if(question[i].q_type == 'radio'){
-			var choiceTpe = '（单选）';
-		}else if(question[i].q_type == 'checkbox'){
-			var choiceTpe = '（多选）';
-		}else{
-			var choiceTpe = '';
-		}
-	
-        q = question[i];
-        q_type = q.q_type;
-        q_no = q.q_no;
-        q_display = q.q_display;
-        q_real_no = q.q_real_no;
-        a = q['answer'];
-        a_len = a.length;
-        ay.push("<div id='q_div_" + i +"'class='" + c + "'q_no='" + q_no +"'q_display='" + q_display + "'q_type='" + q_type + "'q_real_no='" + q_real_no +"'>");
-        ay.push(    "<p id='p_quest_title'>" + q_no + "、" + q.q_display + choiceTpe + "</p>");
-        for (j = 0; j < a_len; ++ j){
-            switch(q_type){
-                case 'radio':
-                case 'checkbox':
-                {
-						a_ele_name = "quest_" + q.q_no;
-						a_ele_id = a_ele_name + "_ans_" + a[j].a_no;
-						a_no = a[j].a_no;
-						a_value = a_ele_id;
-						ay.push("<div>");
-						//ay.push("<span class='p_ans_no'>" + a_no + ")</span>");
-						ay.push(	"<input type='" + q_type +"' name='" + a_ele_name + "' id='" + a_ele_id + "' value='" + a_value + "' a_no='" + a_no + "' a_display='" + a[j].a_display + "' />");
-						ay.push(    "<label for='" + a_ele_id +"'>" + sortArry[j] + "、" + a[j].a_display + "</label>");
-						ay.push("</div>");
-                    break;
-                }
-                case 'textarea':
-                {
-                    ay.push("<div q_type='" + q_type + "'><span>"+ sortArry[j] + "、</span>" +"<textarea name='" + a_ele_name + "id='" + a_ele_id + "'></textarea></div>");
-                    break;
-                }
-            }
-        }
-        ay.push("</div>");
+  <meta charset="utf-8">
+  
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <link rel="dns-prefetch" href="http://yoursite.com">
+  <title>FightingGril</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="FightingGril">
+<meta property="og:url" content="http://yoursite.com/index.html">
+<meta property="og:site_name" content="FightingGril">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="FightingGril">
+  
+    <link rel="alternative" href="/atom.xml" title="FightingGril" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" type="text/css" href="/./main.2d7529.css">
+  <style type="text/css">
+  
+    #container.show {
+      background: linear-gradient(200deg,#a0cfe4,#e8c37e);
     }
-    html = ay.join(" ");
-    con.innerHTML = html;
-    var div =	document.getElementById("btn");
-	div.style.display = "";
-}
-//客户端回调，选择已有答案（客观题）
-function objective_question(question_answer){
-	var q_a = question_answer;
-	if(q_a.length == 0) return;
-	for(var q_i = 0; q_i < q_a.length; q_i++){
-		var q_obj = q_a[q_i];
-		var no = q_obj.q_no,
-			answer = q_obj.answer;
+  </style>
+  
+
+  
+
+</head>
+
+<body>
+  <div id="container" q-class="show:isCtnShow">
+    <canvas id="anm-canvas" class="anm-canvas"></canvas>
+    <div class="left-col" q-class="show:isShow">
+      
+<div class="overlay" style="background: #4d4d4d"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			<img src="/uploads/pic.png" class="js-avatar">
+		</a>
+		<hgroup>
+		  <h1 class="header-author"><a href="/">愤怒的家qiao</a></h1>
+		</hgroup>
+		
+
+		<nav class="header-menu">
+			<ul>
 			
-		var q_div = document.getElementsByClassName('question_div');
-		for(var i = 0 ;i<q_div.length;i++){
-			var obj =  q_div[i];
-			var q_type = obj.getAttribute('q_type');
-			var idx = i;
-			var q_no = obj.getAttribute("q_no");
-			if(no == q_no){
-				if (q_type == 'checkbox' || q_type == 'radio'){
-					//遍历input
-					var ele = obj.getElementsByTagName("input");
-					for(j = 0 ;j<ele.length;j++){
-						if(answer[j].a_no && !isNull(answer[j].a_no)){
-							ele[j].checked = true;
-						}
-						ele[j].disabled = true;
-					}
-				}
-				else{
-					var ele = obj.getElementsByTagName("textarea");
-					for(j = 0 ;j<ele.length;j++){
-						ele[j].value = answer[j].a_display;
-						ele[j].readOnly = true;
-					}
-				}
-			}
-		}
-	}
-}
-//提交答题
-function  do_ans_question(){
-	var ansdata = do_get_ans();
-	if (ansdata){
-		var len = ansdata.length;
-		var paper_answer = '';
-		var i = 0;
-		var j = 0;
-		var q = null;
-		var req = {};
-		//alert(len);
-		for (i = 0; i < len; ++i){
-			// xxd,20140207
-			q = ansdata[i];
-			//req['q_no']= q.q_real_no;
-			//req['q_type'] = q.q_type;
-			var a_cell = '';
-			if (q.q_type == 'radio'){
-				a_cell= q.answer[0].a_checked_no;
-			}
-			else if (q.q_type == 'checkbox'){
-				var clen = q.answer.length;
-				a_cell= q.answer[0].a_checked_no;
-				for(j = 1; j < clen; ++ j){
-					a_cell = a_cell + "&" + q.answer[j].a_checked_no;
-				}
-			}
-			if(i == len - 1){
-				paper_answer = paper_answer + q.q_no + '#' + a_cell + '|';
-			}else{
-				paper_answer = paper_answer + q.q_no + '#' + a_cell + '|';
-			}
-		}
-		req['a_cell']= paper_answer;
-		//var param = packdata(req, '=', '\n');
-		//document.getElementById('zz').value = param;
-		//window.location.href="action=risk_ask_submit^"+paper_answer;
-		//submit_answer  提交数据
-		
-		
-		displayAnswer('75', '一级风险');
-	}else{
-		//var div =	document.getElementById("btn");
-		//div.style.display = "none";
-		//window.location.href="action=risk_ask_submit^zhou";
-	}
-}
-function packdata(d, a, s){
-	var data = '';
-	for (k in d){
-		if (typeof(d[k]) != 'function' && typeof(d[k]) != 'object'){
-			data = data + k + a + d[k] + s;
-		}
-	}
-	return data;
-}
-//验证答题
-function do_get_ans(){
-	var data = get_answer_data(create_answer, "hiddenModalContent", "question_div");
-	// xxd,20140207
-	if (data.tip_idx != -1){
-		fnShowMsgBox("您的第" + data.tip_idx + "题没有回答");
-		return null;
-	}
-	//
-	if (data.ansdata == null){
-		fnShowMsgBox('取答案失败');
-		return null;
-	}
-	return data.ansdata;
-}
-//桥梁
-function get_answer_data(handler, container, c){
-	return handler(container, c);
-}
-//答题提示
-function fnShowMsgBox(msg){
-	//window.location.href="action=risk_ask_alert^ "+msg;
-	
-	showAnswerMessage(msg)
-}
+				<li><a href="/">主页</a></li>
+	        
+				<li><a href="/tags/随笔/">随笔</a></li>
+	        
+			</ul>
+		</nav>
+		<nav class="header-smart-menu">
+    		
+    			
+    			<a q-on="click: openSlider(e, 'innerArchive')" href="javascript:void(0)">所有文章</a>
+    			
+            
+    			
+    			<a q-on="click: openSlider(e, 'friends')" href="javascript:void(0)">友链</a>
+    			
+            
+    			
+    			<a q-on="click: openSlider(e, 'aboutme')" href="javascript:void(0)">关于我</a>
+    			
+            
+		</nav>
+		<nav class="header-nav">
+			<div class="social">
+				
+					<a class="github" target="_blank" href="#" title="github"><i class="icon-github"></i></a>
+		        
+					<a class="weibo" target="_blank" href="#" title="weibo"><i class="icon-weibo"></i></a>
+		        
+					<a class="rss" target="_blank" href="#" title="rss"><i class="icon-rss"></i></a>
+		        
+					<a class="zhihu" target="_blank" href="#" title="zhihu"><i class="icon-zhihu"></i></a>
+		        
+			</div>
+		</nav>
+	</header>		
+</div>
 
-//获取答案默认处理函数
-function create_answer(container, c){
-	var ay = [];
-	var q = null;
-	var q_no= '';
-	var q_display = '';
-	var q_type = '';
-	var q_real_no = '';
-	var a_no=''
-	var a_display = '';
-	var a_value='';
-	var a_checked_no = '';
-	var ele_label = null;
-	var q_idx = -1;
-	var i = 0 ;
-	var j = 0;
-	var q_div = document.getElementsByClassName(c);
-	for(i = 0 ;i<q_div.length;i++){
-		var obj =  q_div[i];
-		var idx = i;
-		q_no = obj.getAttribute("q_no");
-		q_display = obj.getAttribute("q_display");
-		q_type = obj.getAttribute("q_type");
-		q_real_no = obj.getAttribute("q_real_no");
-		var answer = [];
-		var flag = false;
-		if (q_type == 'checkbox' || q_type == 'radio'){
-			//遍历input
-			var ele = obj.getElementsByTagName("input");
-			for(j = 0 ;j<ele.length;j++){
-				if(ele[j].checked){
-					a_no = ele[j].getAttribute("a_no");
-					a_display = ele[j].getAttribute("a_display");
-					a_value = ele[j].value;
-					a_checked_no = a_no;
-					var a = {a_no:a_no, a_display:a_display, a_value:a_value, a_checked_no:a_checked_no};
-					answer.push(a);
-					flag = true;
-					}
-			}
-			//判断没有选择答案处理
-			if (flag != true && q_idx == -1){
-				q_idx = idx + 1;//设置没答题的题号
+    </div>
+    <div class="mid-col" q-class="show:isShow,hide:isShow|isFalse">
+      
+<nav id="mobile-nav">
+  	<div class="overlay js-overlay" style="background: #4d4d4d"></div>
+	<div class="btnctn js-mobile-btnctn">
+  		<div class="slider-trigger list" q-on="click: openSlider(e)"><i class="icon icon-sort"></i></div>
+	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img src="/uploads/pic.png" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author js-header-author">愤怒的家qiao</h1>
+			</hgroup>
+			
+			
+			
+				
+			
+				
+			
+			
+			
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="#" title="github"><i class="icon-github"></i></a>
+			        
+						<a class="weibo" target="_blank" href="#" title="weibo"><i class="icon-weibo"></i></a>
+			        
+						<a class="rss" target="_blank" href="#" title="rss"><i class="icon-rss"></i></a>
+			        
+						<a class="zhihu" target="_blank" href="#" title="zhihu"><i class="icon-zhihu"></i></a>
+			        
+				</div>
+			</nav>
 
-			}
-			q = {q_no:q_no, q_display:q_display, q_type:q_type, answer:answer,q_real_no:q_real_no};
-		}
-		else{
-			var ele = obj.getElementsByTagName("textarea");
-			for(j = 0 ;j<ele.length;j++){
-				a_value = ele[j].value;
-				var a = {a_no:'', a_display:'', a_value:a_value, a_checked_no:''};
-				answer.push(a);
-				//判断没有填写答案处理
-				if (a_value == '' && q_idx == -1){
-					q_idx = idx + 1;//设置没答题的题号
-				}
-			}
-			q = {q_no:q_no, q_display:q_display, q_type:q_type, answer:answer};
-		}
-		ay.push(q);
+			<nav class="header-menu js-header-menu">
+				<ul style="width: 50%">
+				
+				
+					<li style="width: 50%"><a href="/">主页</a></li>
+		        
+					<li style="width: 50%"><a href="/tags/随笔/">随笔</a></li>
+		        
+				</ul>
+			</nav>
+		</header>				
+	</div>
+	<div class="mobile-mask" style="display:none" q-show="isShow"></div>
+</nav>
+
+      <div id="wrapper" class="body-wrap">
+        <div class="menu-l">
+          <div class="canvas-wrap">
+            <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
+          </div>
+          <div id="js-content" class="content-ll">
+            
+  
+    <article id="post-Start" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/01/17/Start/">Start</a>
+    </h1>
+  
+
+        
+        <a href="/2017/01/17/Start/" class="archive-article-date">
+  	<time datetime="2017-01-16T17:33:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-01-17</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/01/17/Start/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
+    <article id="post-hello-world" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/01/17/hello-world/">Hello World</a>
+    </h1>
+  
+
+        
+        <a href="/2017/01/17/hello-world/" class="archive-article-date">
+  	<time datetime="2017-01-16T17:04:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-01-17</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/01/17/hello-world/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
+  
+
+
+          </div>
+        </div>
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2017 愤怒的家qiao
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    <script>
+	var yiliaConfig = {
+		mathjax: false,
+		isHome: true,
+		isPost: false,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false,
+		root: "/",
+		innerArchive: true,
+		showTags: false
 	}
-	return {ansdata:ay, tip_idx:q_idx};
-}
-//客户端回调，答题结果
-function displayAnswer(score,level_name){
-    var form  = document.getElementById("Q_form");
-    form.style.display = "none";
-	document.getElementById("btn").style.display = 'none';
-	document.getElementById("msg").style.display = 'none';
-    var answer = document.getElementById("answer");
-	document.getElementById("reset_btn").style.display = "block";
-	answer.style.display = 'block';
-    answer.innerHTML = "<p>您的测评得分为<span style='color:#FF0000'>"+score+"</span>,您的测评等级为<span style='color:#FF0000'>"+level_name+"</span></p>";
-}
-//客户端回调，显示信息msg
-function showAnswerMessage(retmsg){
-    /*var answer = document.getElementById("answer");
-	var msg = document.getElementById("msg");
-	answer.style.display = "none";
-	msg.innerHTML = retmsg;
-	msg.style.display="inline";*/
-	alert(retmsg);
-	var count =retmsg.match(/\d+/g);
-	count = Number(count) - 1;
-	console.log(document.getElementById(' q_div_'+count));
-	document.getElementById('q_div_'+count).scrollIntoView();
-}
-//重置
-function reTest(){
-	//window.location.href="action=risk_ask_retest^";
+</script>
 
-	window.location.reload();
-}
-function isNull(str){
-	if(str == "" || str == undefined || str == null){
-		return true;
-	}
-	return false;
-}
+<script>!function(t){function n(r){if(e[r])return e[r].exports;var o=e[r]={exports:{},id:r,loaded:!1};return t[r].call(o.exports,o,o.exports,n),o.loaded=!0,o.exports}var e={};return n.m=t,n.c=e,n.p="./",n(0)}([function(t,n,e){"use strict";function r(t){return t&&t.__esModule?t:{default:t}}function o(t,n){var e=/\/|index.html/g;return t.replace(e,"")===n.replace(e,"")}function i(){for(var t=document.querySelectorAll(".js-header-menu li a"),n=window.location.pathname,e=0,r=t.length;e<r;e++){var i=t[e];o(n,i.getAttribute("href"))&&(0,d.default)(i,"active")}}function u(t){for(var n=t.offsetLeft,e=t.offsetParent;null!==e;)n+=e.offsetLeft,e=e.offsetParent;return n}function f(t){for(var n=t.offsetTop,e=t.offsetParent;null!==e;)n+=e.offsetTop,e=e.offsetParent;return n}function c(t,n,e,r,o){var i=u(t),c=f(t)-n;if(c-e<=o){var a=t.$newDom;a||(a=t.cloneNode(!0),(0,h.default)(t,a),t.$newDom=a,a.style.position="fixed",a.style.top=(e||c)+"px",a.style.left=i+"px",a.style.zIndex=r||2,a.style.width="100%",a.style.color="#fff"),a.style.visibility="visible",t.style.visibility="hidden"}else{t.style.visibility="visible";var s=t.$newDom;s&&(s.style.visibility="hidden")}}function a(){var t=document.querySelector(".js-overlay"),n=document.querySelector(".js-header-menu");c(t,document.body.scrollTop,-63,2,0),c(n,document.body.scrollTop,1,3,0)}function s(){document.querySelector("#container").addEventListener("scroll",function(t){a()}),window.addEventListener("scroll",function(t){a()}),a()}function l(){x.default.versions.mobile&&window.screen.width<800&&(i(),s())}var p=e(71),d=r(p),v=e(72),y=(r(v),e(84)),h=r(y),b=e(69),x=r(b),m=e(75),g=r(m),w=e(70);l(),(0,w.addLoadEvent)(function(){g.default.init()}),t.exports={}},function(t,n){var e=t.exports="undefined"!=typeof window&&window.Math==Math?window:"undefined"!=typeof self&&self.Math==Math?self:Function("return this")();"number"==typeof __g&&(__g=e)},function(t,n){var e={}.hasOwnProperty;t.exports=function(t,n){return e.call(t,n)}},function(t,n,e){var r=e(49),o=e(15);t.exports=function(t){return r(o(t))}},function(t,n,e){t.exports=!e(8)(function(){return 7!=Object.defineProperty({},"a",{get:function(){return 7}}).a})},function(t,n,e){var r=e(6),o=e(12);t.exports=e(4)?function(t,n,e){return r.f(t,n,o(1,e))}:function(t,n,e){return t[n]=e,t}},function(t,n,e){var r=e(10),o=e(30),i=e(24),u=Object.defineProperty;n.f=e(4)?Object.defineProperty:function(t,n,e){if(r(t),n=i(n,!0),r(e),o)try{return u(t,n,e)}catch(t){}if("get"in e||"set"in e)throw TypeError("Accessors not supported!");return"value"in e&&(t[n]=e.value),t}},function(t,n,e){var r=e(22)("wks"),o=e(13),i=e(1).Symbol,u="function"==typeof i,f=t.exports=function(t){return r[t]||(r[t]=u&&i[t]||(u?i:o)("Symbol."+t))};f.store=r},function(t,n){t.exports=function(t){try{return!!t()}catch(t){return!0}}},function(t,n,e){var r=e(35),o=e(16);t.exports=Object.keys||function(t){return r(t,o)}},function(t,n,e){var r=e(11);t.exports=function(t){if(!r(t))throw TypeError(t+" is not an object!");return t}},function(t,n){t.exports=function(t){return"object"==typeof t?null!==t:"function"==typeof t}},function(t,n){t.exports=function(t,n){return{enumerable:!(1&t),configurable:!(2&t),writable:!(4&t),value:n}}},function(t,n){var e=0,r=Math.random();t.exports=function(t){return"Symbol(".concat(void 0===t?"":t,")_",(++e+r).toString(36))}},function(t,n){var e=t.exports={version:"2.4.0"};"number"==typeof __e&&(__e=e)},function(t,n){t.exports=function(t){if(void 0==t)throw TypeError("Can't call method on  "+t);return t}},function(t,n){t.exports="constructor,hasOwnProperty,isPrototypeOf,propertyIsEnumerable,toLocaleString,toString,valueOf".split(",")},function(t,n){t.exports={}},function(t,n){t.exports=!0},function(t,n){n.f={}.propertyIsEnumerable},function(t,n,e){var r=e(6).f,o=e(2),i=e(7)("toStringTag");t.exports=function(t,n,e){t&&!o(t=e?t:t.prototype,i)&&r(t,i,{configurable:!0,value:n})}},function(t,n,e){var r=e(22)("keys"),o=e(13);t.exports=function(t){return r[t]||(r[t]=o(t))}},function(t,n,e){var r=e(1),o="__core-js_shared__",i=r[o]||(r[o]={});t.exports=function(t){return i[t]||(i[t]={})}},function(t,n){var e=Math.ceil,r=Math.floor;t.exports=function(t){return isNaN(t=+t)?0:(t>0?r:e)(t)}},function(t,n,e){var r=e(11);t.exports=function(t,n){if(!r(t))return t;var e,o;if(n&&"function"==typeof(e=t.toString)&&!r(o=e.call(t)))return o;if("function"==typeof(e=t.valueOf)&&!r(o=e.call(t)))return o;if(!n&&"function"==typeof(e=t.toString)&&!r(o=e.call(t)))return o;throw TypeError("Can't convert object to primitive value")}},function(t,n,e){var r=e(1),o=e(14),i=e(18),u=e(26),f=e(6).f;t.exports=function(t){var n=o.Symbol||(o.Symbol=i?{}:r.Symbol||{});"_"==t.charAt(0)||t in n||f(n,t,{value:u.f(t)})}},function(t,n,e){n.f=e(7)},function(t,n,e){var r=e(1),o=e(14),i=e(46),u=e(5),f="prototype",c=function(t,n,e){var a,s,l,p=t&c.F,d=t&c.G,v=t&c.S,y=t&c.P,h=t&c.B,b=t&c.W,x=d?o:o[n]||(o[n]={}),m=x[f],g=d?r:v?r[n]:(r[n]||{})[f];d&&(e=n);for(a in e)s=!p&&g&&void 0!==g[a],s&&a in x||(l=s?g[a]:e[a],x[a]=d&&"function"!=typeof g[a]?e[a]:h&&s?i(l,r):b&&g[a]==l?function(t){var n=function(n,e,r){if(this instanceof t){switch(arguments.length){case 0:return new t;case 1:return new t(n);case 2:return new t(n,e)}return new t(n,e,r)}return t.apply(this,arguments)};return n[f]=t[f],n}(l):y&&"function"==typeof l?i(Function.call,l):l,y&&((x.virtual||(x.virtual={}))[a]=l,t&c.R&&m&&!m[a]&&u(m,a,l)))};c.F=1,c.G=2,c.S=4,c.P=8,c.B=16,c.W=32,c.U=64,c.R=128,t.exports=c},function(t,n){var e={}.toString;t.exports=function(t){return e.call(t).slice(8,-1)}},function(t,n,e){var r=e(11),o=e(1).document,i=r(o)&&r(o.createElement);t.exports=function(t){return i?o.createElement(t):{}}},function(t,n,e){t.exports=!e(4)&&!e(8)(function(){return 7!=Object.defineProperty(e(29)("div"),"a",{get:function(){return 7}}).a})},function(t,n,e){"use strict";var r=e(18),o=e(27),i=e(36),u=e(5),f=e(2),c=e(17),a=e(51),s=e(20),l=e(58),p=e(7)("iterator"),d=!([].keys&&"next"in[].keys()),v="@@iterator",y="keys",h="values",b=function(){return this};t.exports=function(t,n,e,x,m,g,w){a(e,n,x);var O,S,_,j=function(t){if(!d&&t in A)return A[t];switch(t){case y:return function(){return new e(this,t)};case h:return function(){return new e(this,t)}}return function(){return new e(this,t)}},P=n+" Iterator",E=m==h,M=!1,A=t.prototype,T=A[p]||A[v]||m&&A[m],L=T||j(m),N=m?E?j("entries"):L:void 0,C="Array"==n?A.entries||T:T;if(C&&(_=l(C.call(new t)),_!==Object.prototype&&(s(_,P,!0),r||f(_,p)||u(_,p,b))),E&&T&&T.name!==h&&(M=!0,L=function(){return T.call(this)}),r&&!w||!d&&!M&&A[p]||u(A,p,L),c[n]=L,c[P]=b,m)if(O={values:E?L:j(h),keys:g?L:j(y),entries:N},w)for(S in O)S in A||i(A,S,O[S]);else o(o.P+o.F*(d||M),n,O);return O}},function(t,n,e){var r=e(10),o=e(55),i=e(16),u=e(21)("IE_PROTO"),f=function(){},c="prototype",a=function(){var t,n=e(29)("iframe"),r=i.length,o="<",u=">";for(n.style.display="none",e(48).appendChild(n),n.src="javascript:",t=n.contentWindow.document,t.open(),t.write(o+"script"+u+"document.F=Object"+o+"/script"+u),t.close(),a=t.F;r--;)delete a[c][i[r]];return a()};t.exports=Object.create||function(t,n){var e;return null!==t?(f[c]=r(t),e=new f,f[c]=null,e[u]=t):e=a(),void 0===n?e:o(e,n)}},function(t,n,e){var r=e(35),o=e(16).concat("length","prototype");n.f=Object.getOwnPropertyNames||function(t){return r(t,o)}},function(t,n){n.f=Object.getOwnPropertySymbols},function(t,n,e){var r=e(2),o=e(3),i=e(45)(!1),u=e(21)("IE_PROTO");t.exports=function(t,n){var e,f=o(t),c=0,a=[];for(e in f)e!=u&&r(f,e)&&a.push(e);for(;n.length>c;)r(f,e=n[c++])&&(~i(a,e)||a.push(e));return a}},function(t,n,e){t.exports=e(5)},function(t,n,e){var r=e(15);t.exports=function(t){return Object(r(t))}},function(t,n,e){t.exports={default:e(41),__esModule:!0}},function(t,n,e){t.exports={default:e(42),__esModule:!0}},function(t,n,e){"use strict";function r(t){return t&&t.__esModule?t:{default:t}}n.__esModule=!0;var o=e(39),i=r(o),u=e(38),f=r(u),c="function"==typeof f.default&&"symbol"==typeof i.default?function(t){return typeof t}:function(t){return t&&"function"==typeof f.default&&t.constructor===f.default&&t!==f.default.prototype?"symbol":typeof t};n.default="function"==typeof f.default&&"symbol"===c(i.default)?function(t){return"undefined"==typeof t?"undefined":c(t)}:function(t){return t&&"function"==typeof f.default&&t.constructor===f.default&&t!==f.default.prototype?"symbol":"undefined"==typeof t?"undefined":c(t)}},function(t,n,e){e(65),e(63),e(66),e(67),t.exports=e(14).Symbol},function(t,n,e){e(64),e(68),t.exports=e(26).f("iterator")},function(t,n){t.exports=function(t){if("function"!=typeof t)throw TypeError(t+" is not a function!");return t}},function(t,n){t.exports=function(){}},function(t,n,e){var r=e(3),o=e(61),i=e(60);t.exports=function(t){return function(n,e,u){var f,c=r(n),a=o(c.length),s=i(u,a);if(t&&e!=e){for(;a>s;)if(f=c[s++],f!=f)return!0}else for(;a>s;s++)if((t||s in c)&&c[s]===e)return t||s||0;return!t&&-1}}},function(t,n,e){var r=e(43);t.exports=function(t,n,e){if(r(t),void 0===n)return t;switch(e){case 1:return function(e){return t.call(n,e)};case 2:return function(e,r){return t.call(n,e,r)};case 3:return function(e,r,o){return t.call(n,e,r,o)}}return function(){return t.apply(n,arguments)}}},function(t,n,e){var r=e(9),o=e(34),i=e(19);t.exports=function(t){var n=r(t),e=o.f;if(e)for(var u,f=e(t),c=i.f,a=0;f.length>a;)c.call(t,u=f[a++])&&n.push(u);return n}},function(t,n,e){t.exports=e(1).document&&document.documentElement},function(t,n,e){var r=e(28);t.exports=Object("z").propertyIsEnumerable(0)?Object:function(t){return"String"==r(t)?t.split(""):Object(t)}},function(t,n,e){var r=e(28);t.exports=Array.isArray||function(t){return"Array"==r(t)}},function(t,n,e){"use strict";var r=e(32),o=e(12),i=e(20),u={};e(5)(u,e(7)("iterator"),function(){return this}),t.exports=function(t,n,e){t.prototype=r(u,{next:o(1,e)}),i(t,n+" Iterator")}},function(t,n){t.exports=function(t,n){return{value:n,done:!!t}}},function(t,n,e){var r=e(9),o=e(3);t.exports=function(t,n){for(var e,i=o(t),u=r(i),f=u.length,c=0;f>c;)if(i[e=u[c++]]===n)return e}},function(t,n,e){var r=e(13)("meta"),o=e(11),i=e(2),u=e(6).f,f=0,c=Object.isExtensible||function(){return!0},a=!e(8)(function(){return c(Object.preventExtensions({}))}),s=function(t){u(t,r,{value:{i:"O"+ ++f,w:{}}})},l=function(t,n){if(!o(t))return"symbol"==typeof t?t:("string"==typeof t?"S":"P")+t;if(!i(t,r)){if(!c(t))return"F";if(!n)return"E";s(t)}return t[r].i},p=function(t,n){if(!i(t,r)){if(!c(t))return!0;if(!n)return!1;s(t)}return t[r].w},d=function(t){return a&&v.NEED&&c(t)&&!i(t,r)&&s(t),t},v=t.exports={KEY:r,NEED:!1,fastKey:l,getWeak:p,onFreeze:d}},function(t,n,e){var r=e(6),o=e(10),i=e(9);t.exports=e(4)?Object.defineProperties:function(t,n){o(t);for(var e,u=i(n),f=u.length,c=0;f>c;)r.f(t,e=u[c++],n[e]);return t}},function(t,n,e){var r=e(19),o=e(12),i=e(3),u=e(24),f=e(2),c=e(30),a=Object.getOwnPropertyDescriptor;n.f=e(4)?a:function(t,n){if(t=i(t),n=u(n,!0),c)try{return a(t,n)}catch(t){}if(f(t,n))return o(!r.f.call(t,n),t[n])}},function(t,n,e){var r=e(3),o=e(33).f,i={}.toString,u="object"==typeof window&&window&&Object.getOwnPropertyNames?Object.getOwnPropertyNames(window):[],f=function(t){try{return o(t)}catch(t){return u.slice()}};t.exports.f=function(t){return u&&"[object Window]"==i.call(t)?f(t):o(r(t))}},function(t,n,e){var r=e(2),o=e(37),i=e(21)("IE_PROTO"),u=Object.prototype;t.exports=Object.getPrototypeOf||function(t){return t=o(t),r(t,i)?t[i]:"function"==typeof t.constructor&&t instanceof t.constructor?t.constructor.prototype:t instanceof Object?u:null}},function(t,n,e){var r=e(23),o=e(15);t.exports=function(t){return function(n,e){var i,u,f=String(o(n)),c=r(e),a=f.length;return c<0||c>=a?t?"":void 0:(i=f.charCodeAt(c),i<55296||i>56319||c+1===a||(u=f.charCodeAt(c+1))<56320||u>57343?t?f.charAt(c):i:t?f.slice(c,c+2):(i-55296<<10)+(u-56320)+65536)}}},function(t,n,e){var r=e(23),o=Math.max,i=Math.min;t.exports=function(t,n){return t=r(t),t<0?o(t+n,0):i(t,n)}},function(t,n,e){var r=e(23),o=Math.min;t.exports=function(t){return t>0?o(r(t),9007199254740991):0}},function(t,n,e){"use strict";var r=e(44),o=e(52),i=e(17),u=e(3);t.exports=e(31)(Array,"Array",function(t,n){this._t=u(t),this._i=0,this._k=n},function(){var t=this._t,n=this._k,e=this._i++;return!t||e>=t.length?(this._t=void 0,o(1)):"keys"==n?o(0,e):"values"==n?o(0,t[e]):o(0,[e,t[e]])},"values"),i.Arguments=i.Array,r("keys"),r("values"),r("entries")},function(t,n){},function(t,n,e){"use strict";var r=e(59)(!0);e(31)(String,"String",function(t){this._t=String(t),this._i=0},function(){var t,n=this._t,e=this._i;return e>=n.length?{value:void 0,done:!0}:(t=r(n,e),this._i+=t.length,{value:t,done:!1})})},function(t,n,e){"use strict";var r=e(1),o=e(2),i=e(4),u=e(27),f=e(36),c=e(54).KEY,a=e(8),s=e(22),l=e(20),p=e(13),d=e(7),v=e(26),y=e(25),h=e(53),b=e(47),x=e(50),m=e(10),g=e(3),w=e(24),O=e(12),S=e(32),_=e(57),j=e(56),P=e(6),E=e(9),M=j.f,A=P.f,T=_.f,L=r.Symbol,N=r.JSON,C=N&&N.stringify,k="prototype",F=d("_hidden"),q=d("toPrimitive"),I={}.propertyIsEnumerable,B=s("symbol-registry"),D=s("symbols"),W=s("op-symbols"),H=Object[k],K="function"==typeof L,R=r.QObject,J=!R||!R[k]||!R[k].findChild,U=i&&a(function(){return 7!=S(A({},"a",{get:function(){return A(this,"a",{value:7}).a}})).a})?function(t,n,e){var r=M(H,n);r&&delete H[n],A(t,n,e),r&&t!==H&&A(H,n,r)}:A,G=function(t){var n=D[t]=S(L[k]);return n._k=t,n},$=K&&"symbol"==typeof L.iterator?function(t){return"symbol"==typeof t}:function(t){return t instanceof L},z=function(t,n,e){return t===H&&z(W,n,e),m(t),n=w(n,!0),m(e),o(D,n)?(e.enumerable?(o(t,F)&&t[F][n]&&(t[F][n]=!1),e=S(e,{enumerable:O(0,!1)})):(o(t,F)||A(t,F,O(1,{})),t[F][n]=!0),U(t,n,e)):A(t,n,e)},Y=function(t,n){m(t);for(var e,r=b(n=g(n)),o=0,i=r.length;i>o;)z(t,e=r[o++],n[e]);return t},Q=function(t,n){return void 0===n?S(t):Y(S(t),n)},X=function(t){var n=I.call(this,t=w(t,!0));return!(this===H&&o(D,t)&&!o(W,t))&&(!(n||!o(this,t)||!o(D,t)||o(this,F)&&this[F][t])||n)},V=function(t,n){if(t=g(t),n=w(n,!0),t!==H||!o(D,n)||o(W,n)){var e=M(t,n);return!e||!o(D,n)||o(t,F)&&t[F][n]||(e.enumerable=!0),e}},Z=function(t){for(var n,e=T(g(t)),r=[],i=0;e.length>i;)o(D,n=e[i++])||n==F||n==c||r.push(n);return r},tt=function(t){for(var n,e=t===H,r=T(e?W:g(t)),i=[],u=0;r.length>u;)!o(D,n=r[u++])||e&&!o(H,n)||i.push(D[n]);return i};K||(L=function(){if(this instanceof L)throw TypeError("Symbol is not a constructor!");var t=p(arguments.length>0?arguments[0]:void 0),n=function(e){this===H&&n.call(W,e),o(this,F)&&o(this[F],t)&&(this[F][t]=!1),U(this,t,O(1,e))};return i&&J&&U(H,t,{configurable:!0,set:n}),G(t)},f(L[k],"toString",function(){return this._k}),j.f=V,P.f=z,e(33).f=_.f=Z,e(19).f=X,e(34).f=tt,i&&!e(18)&&f(H,"propertyIsEnumerable",X,!0),v.f=function(t){return G(d(t))}),u(u.G+u.W+u.F*!K,{Symbol:L});for(var nt="hasInstance,isConcatSpreadable,iterator,match,replace,search,species,split,toPrimitive,toStringTag,unscopables".split(","),et=0;nt.length>et;)d(nt[et++]);for(var nt=E(d.store),et=0;nt.length>et;)y(nt[et++]);u(u.S+u.F*!K,"Symbol",{for:function(t){return o(B,t+="")?B[t]:B[t]=L(t)},keyFor:function(t){if($(t))return h(B,t);throw TypeError(t+" is not a symbol!")},useSetter:function(){J=!0},useSimple:function(){J=!1}}),u(u.S+u.F*!K,"Object",{create:Q,defineProperty:z,defineProperties:Y,getOwnPropertyDescriptor:V,getOwnPropertyNames:Z,getOwnPropertySymbols:tt}),N&&u(u.S+u.F*(!K||a(function(){var t=L();return"[null]"!=C([t])||"{}"!=C({a:t})||"{}"!=C(Object(t))})),"JSON",{stringify:function(t){if(void 0!==t&&!$(t)){for(var n,e,r=[t],o=1;arguments.length>o;)r.push(arguments[o++]);return n=r[1],"function"==typeof n&&(e=n),!e&&x(n)||(n=function(t,n){if(e&&(n=e.call(this,t,n)),!$(n))return n}),r[1]=n,C.apply(N,r)}}}),L[k][q]||e(5)(L[k],q,L[k].valueOf),l(L,"Symbol"),l(Math,"Math",!0),l(r.JSON,"JSON",!0)},function(t,n,e){e(25)("asyncIterator")},function(t,n,e){e(25)("observable")},function(t,n,e){e(62);for(var r=e(1),o=e(5),i=e(17),u=e(7)("toStringTag"),f=["NodeList","DOMTokenList","MediaList","StyleSheetList","CSSRuleList"],c=0;c<5;c++){var a=f[c],s=r[a],l=s&&s.prototype;l&&!l[u]&&o(l,u,a),i[a]=i.Array}},function(t,n){"use strict";var e={versions:function(){var t=window.navigator.userAgent;return{trident:t.indexOf("Trident")>-1,presto:t.indexOf("Presto")>-1,webKit:t.indexOf("AppleWebKit")>-1,gecko:t.indexOf("Gecko")>-1&&t.indexOf("KHTML")==-1,mobile:!!t.match(/AppleWebKit.*Mobile.*/),ios:!!t.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/),android:t.indexOf("Android")>-1||t.indexOf("Linux")>-1,iPhone:t.indexOf("iPhone")>-1||t.indexOf("Mac")>-1,iPad:t.indexOf("iPad")>-1,webApp:t.indexOf("Safari")==-1,weixin:t.indexOf("MicroMessenger")==-1}}()};t.exports=e},function(t,n,e){"use strict";function r(t){return t&&t.__esModule?t:{default:t}}var o=e(40),i=r(o),u=function(){function t(t,n,e){return n||e?String.fromCharCode(n||e):o[t]||t}function n(t){return l[t]}var e=/&quot;|&lt;|&gt;|&amp;|&nbsp;|&apos;|&#(\d+);|&#(\d+)/g,r=/['<> "&]/g,o={"&quot;":'"',"&lt;":"<","&gt;":">","&amp;":"&","&nbsp;":" "},f=/\u00a0/g,c=/<br\s*\/?>/gi,a=/\r?\n/g,s=/\s/g,l={};for(var p in o)l[o[p]]=p;return o["&apos;"]="'",l["'"]="&#39;",{encode:function(t){return t?(""+t).replace(r,n).replace(a,"<br/>").replace(s,"&nbsp;"):""},decode:function(n){return n?(""+n).replace(c,"\n").replace(e,t).replace(f," "):""},encodeBase16:function(t){if(!t)return t;t+="";for(var n=[],e=0,r=t.length;r>e;e++)n.push(t.charCodeAt(e).toString(16).toUpperCase());return n.join("")},encodeBase16forJSON:function(t){if(!t)return t;t=t.replace(/[\u4E00-\u9FBF]/gi,function(t){return escape(t).replace("%u","\\u")});for(var n=[],e=0,r=t.length;r>e;e++)n.push(t.charCodeAt(e).toString(16).toUpperCase());return n.join("")},decodeBase16:function(t){if(!t)return t;t+="";for(var n=[],e=0,r=t.length;r>e;e+=2)n.push(String.fromCharCode("0x"+t.slice(e,e+2)));return n.join("")},encodeObject:function(t){if(t instanceof Array)for(var n=0,e=t.length;e>n;n++)t[n]=u.encodeObject(t[n]);else if("object"==("undefined"==typeof t?"undefined":(0,i.default)(t)))for(var r in t)t[r]=u.encodeObject(t[r]);else if("string"==typeof t)return u.encode(t);return t},loadScript:function(t){var n=document.createElement("script");document.getElementsByTagName("body")[0].appendChild(n),n.setAttribute("src",t)},addLoadEvent:function(t){var n=window.onload;"function"!=typeof window.onload?window.onload=t:window.onload=function(){n(),t()}}}}();t.exports=u},function(t,n){function e(t,n){t.classList?t.classList.add(n):t.className+=" "+n}t.exports=e},function(t,n){function e(t,n){if(t.classList)t.classList.remove(n);else{var e=new RegExp("(^|\\b)"+n.split(" ").join("|")+"(\\b|$)","gi");t.className=t.className.replace(e," ")}}t.exports=e},,,function(t,n){"use strict";function e(){var t=document.querySelector("#page-nav");if(t&&!document.querySelector("#page-nav .extend.prev")&&(t.innerHTML='<a class="extend prev disabled" rel="prev">&laquo; Prev</a>'+t.innerHTML),t&&!document.querySelector("#page-nav .extend.next")&&(t.innerHTML=t.innerHTML+'<a class="extend next disabled" rel="next">Next &raquo;</a>'),yiliaConfig&&yiliaConfig.open_in_new){var n=document.querySelectorAll(".article-entry a:not(.article-more-a)");n.forEach(function(t){t.setAttribute("target","_blank")})}var e=document.querySelector("#js-aboutme");e&&0!==e.length&&(e.innerHTML=e.innerText)}t.exports={init:e}},,,,,,,,,function(t,n){function e(t,n){if("string"==typeof n)return t.insertAdjacentHTML("afterend",n);var e=t.nextSibling;return e?t.parentNode.insertBefore(n,e):t.parentNode.appendChild(n)}t.exports=e}])</script><script src="/./main.2d7529.js"></script><script>!function(){var e=function(e){var t=document.createElement("script");document.getElementsByTagName("body")[0].appendChild(t),t.setAttribute("src",e)};e("/slider.885efe.js")}()</script>
 
- </script>
+
+    
+<div class="tools-col" q-class="show:isShow,hide:isShow|isFalse" q-on="click:stop(e)">
+  <div class="tools-nav header-menu">
+    
+    
+      
+      
+      
+    
+      
+      
+      
+    
+      
+      
+      
+    
+    
+
+    <ul style="width: 70%">
+    
+    
+      
+      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'innerArchive')"><a href="javascript:void(0)" q-class="active:innerArchive">所有文章</a></li>
+      
+        
+      
+      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'friends')"><a href="javascript:void(0)" q-class="active:friends">友链</a></li>
+      
+        
+      
+      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'aboutme')"><a href="javascript:void(0)" q-class="active:aboutme">关于我</a></li>
+      
+        
+    </ul>
+  </div>
+  <div class="tools-wrap">
+    
+    	<section class="tools-section tools-section-all" q-show="innerArchive">
+        <div class="search-wrap">
+          <input class="search-ipt" q-model="search" type="text" placeholder="find something…">
+          <i class="icon-search icon" q-show="search|isEmptyStr"></i>
+          <i class="icon-close icon" q-show="search|isNotEmptyStr" q-on="click:clearChose(e)"></i>
+        </div>
+        <div class="widget tagcloud search-tag">
+          <p class="search-tag-wording">tag:</p>
+          <label class="search-switch">
+            <input type="checkbox" q-on="click:toggleTag(e)" q-attr="checked:showTags">
+          </label>
+          <ul class="article-tag-list" q-show="showTags">
+            
+            <div class="clearfix"></div>
+          </ul>
+        </div>
+        <ul class="search-ul">
+          <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
+            缺失模块。<br/>1、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
+            2、在根目录_config.yml里添加配置：
+<pre style="font-size: 12px;" q-show="jsonFail">
+  jsonContent:
+    meta: false
+    pages: false
+    posts:
+      title: true
+      date: true
+      path: true
+      text: true
+      raw: false
+      content: false
+      slug: false
+      updated: false
+      comments: false
+      link: false
+      permalink: false
+      excerpt: false
+      categories: false
+      tags: true
+</pre>
+          </p>
+          <li class="search-li" q-repeat="items" q-show="isShow">
+            <a q-attr="href:path|urlformat" class="search-title"><i class="icon-quo-left icon"></i><span q-text="title"></span></a>
+            <p class="search-time">
+              <i class="icon-calendar icon"></i>
+              <span q-text="date|dateformat"></span>
+            </p>
+            <p class="search-tag">
+              <i class="icon-price-tags icon"></i>
+              <span q-repeat="tags" q-on="click:choseTag(e, name)" q-text="name|tagformat"></span>
+            </p>
+          </li>
+        </ul>
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-friends" q-show="friends">
+  		
+        <ul class="search-ul">
+          
+            <li class="search-li">
+              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接1</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接2</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接3</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接4</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接5</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接6</a>
+            </li>
+          
+        </ul>
+  		
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-me" q-show="aboutme">
+  	  	
+  	  		<div class="aboutme-wrap" id="js-aboutme">很惭愧&lt;br&gt;&lt;br&gt;只做了一点微小的工作&lt;br&gt;谢谢大家</div>
+  	  	
+    	</section>
+    
+  </div>
+  
+</div>
+    <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+  </div>
+</body>
 </html>
